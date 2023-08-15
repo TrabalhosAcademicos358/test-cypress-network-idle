@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exemplo de Botão Estilizado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #2980b9;
+        }
+
+        .button-red {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        /* Estilo do botão vermelho quando hover */
+        .button-red:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <button class="button" data-cy="error-400">Erro 400</button>
+    <button class="button button-red" data-cy="error-500">Error 500</button>
+    <script>
+        async function errorFunction(number) {
+            try {
+                const response = await fetch(`/error${number}`);
+                if (response.status === number) {
+                    alert(`Erro ${number}: Requisição Inválida`);
+                }
+            } catch (error) {
+                console.error("Ocorreu um erro:", error);
+            }
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const errorButton400 = document.querySelector('[data-cy="error-400"]');
+            errorButton400.addEventListener("click", () =>errorFunction(400));
+
+            const errorButton500 = document.querySelector('[data-cy="error-500"]');
+            errorButton500.addEventListener("click", () =>errorFunction(500));
+        });
+    </script>
+</body>
+</html>
