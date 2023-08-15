@@ -31,14 +31,13 @@ describe("Teste para confirmar funcionamento de funções do cypress-network-idl
             alias: "getUser",
             method: "GET",
             pattern: "*",
-            failOn5xx: true,
         });
 
         cy.get('[data-cy="error-500"]').click();
         cy.waitForNetworkIdle(2000);
     });
 
-    it.only("Testando retorno de status 500 e falhando como se deve", () => {
+    it("Testando retorno de status 500 e falhando como se deve", () => {
         cy.waitForNetworkIdlePrepare({
             alias: "getUser",
             method: "GET",
